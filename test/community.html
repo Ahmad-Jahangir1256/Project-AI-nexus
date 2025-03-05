@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nexus - Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Add this CSS to each HTML file within the <style> tag */
+
+/* Navigation Ribbon */
+nav {
+    background-color: rgba(5, 8, 51, 0.8);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav.sticky {
+    background-color: rgba(5, 8, 51, 0.95);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00d4ff;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* General Animations */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+.scale-up {
+    transform: scale(0.9);
+    transition: transform 0.5s ease-in-out;
+}
+
+.scale-up:hover {
+    transform: scale(1);
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050833;
+            color: #fff;
+        }
+        .space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .post {
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .post:hover {
+            background-color: #1a202c;
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .post-actions .icon-button {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+            color: #00d4ff;
+            transition: color 0.3s ease;
+        }
+        .post-actions .icon-button:hover {
+            color: #050833;
+        }
+        .post-actions .icon-button i {
+            font-size: 1.25rem;
+        }
+        .post-actions .count {
+            font-size: 0.875rem;
+            color: #aaa;
+        }
+        nav {
+            background-color: rgba(5, 8, 51, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav.sticky {
+            background-color: rgba(5, 8, 51, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00d4ff;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .scale-up {
+            transform: scale(0.9);
+            transition: transform 0.5s ease-in-out;
+        }
+        .scale-up:hover {
+            transform: scale(1);
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed w-full p-4 flex justify-between items-center space-grotesk z-10">
+        <div class="text-primary text-2xl font-bold">AI Nexus</div>
+        <div class="space-x-4">
+            <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="index.html#tools" class="text-white hover:text-primary">AI Tools</a>
+            <a href="blog.html" class="text-white hover:text-primary">Blog</a>
+            <a href="community.html" class="text-white hover:text-primary">Community</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+        </div>
+    </nav>
+    <section class="min-h-screen py-16">
+        <h1 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Community Interaction</h1>
+        <div class="container mx-auto">
+            <div class="bg-secondary p-6 rounded-lg shadow-lg mb-8 slide-up">
+                <h2 class="text-2xl font-semibold mb-4">Share Your Thoughts</h2>
+                <textarea class="w-full p-4 bg-gray-800 rounded-lg" rows="4" placeholder="Write your message here..."></textarea>
+                <button class="bg-primary text-secondary py-2 px-4 rounded-button mt-4 hover:bg-white hover:text-primary transition scale-up">Submit</button>
+            </div>
+            <div class="space-y-4">
+                <div class="post bg-secondary p-6 rounded-lg shadow-lg slide-up">
+                    <div class="post-header">
+                        <h3 class="text-xl font-semibold">Community Post 1</h3>
+                        <span class="text-gray-400">Posted on Jan 1, 2024</span>
+                    </div>
+                    <p class="text-gray-300 mt-2">This is a community post where users can discuss AI tools and share their experiences.</p>
+                    <div class="post-actions mt-4">
+                        <div class="icon-button">
+                            <i class="ri-thumb-up-line"></i>
+                            <span class="count">12</span>
+                        </div>
+                        <div class="icon-button">
+                            <i class="ri-chat-3-line"></i>
+                            <span class="count">5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post bg-secondary p-6 rounded-lg shadow-lg slide-up">
+                    <div class="post-header">
+                        <h3 class="text-xl font-semibold">Community Post 2</h3>
+                        <span class="text-gray-400">Posted on Jan 2, 2024</span>
+                    </div>
+                    <p class="text-gray-300 mt-2">Another community post with insights and discussions on AI.</p>
+                    <div class="post-actions mt-4">
+                        <div class="icon-button">
+                            <i class="ri-thumb-up-line"></i>
+                            <span class="count">8</span>
+                        </div>
+                        <div class="icon-button">
+                            <i class="ri-chat-3-line"></i>
+                            <span class="count">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('sticky');
+                } else {
+                    nav.classList.remove('sticky');
+                }
+            });
+
+            // Add fade-in animation to sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fade-in, .slide-up').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -20,11 +20,11 @@
         .space-grotesk {
             font-family: 'Space Grotesk', sans-serif;
         }
-        .glass-effect {
+        .glass-background {
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.1);
         }
-        .glow {
+        .glow-effect {
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
         }
         .gradient-text {
@@ -33,10 +33,10 @@
             background-clip: text;
             color: transparent;
         }
-        .card-hover {
+        .card-hover-effect {
             transition: all 0.3s ease;
         }
-        .card-hover:hover {
+        .card-hover-effect:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
         }
@@ -57,7 +57,7 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <nav class="fixed w-full z-50 glass-effect">
+    <nav class="fixed w-full z-50 glass-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -83,7 +83,7 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Example Tool Card -->
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-brain-line text-2xl text-primary"></i>
                     </div>
@@ -94,7 +94,7 @@
                         <i class="ri-arrow-right-line ml-2"></i>
                     </a>
                 </div>
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-image-edit-line text-2xl text-primary"></i>
                     </div>
@@ -105,7 +105,7 @@
                         <i class="ri-arrow-right-line ml-2"></i>
                     </a>
                 </div>
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-customer-service-2-line text-2xl text-primary"></i>
                     </div>
@@ -116,7 +116,7 @@
                         <i class="ri-arrow-right-line ml-2"></i>
                     </a>
                 </div>
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-code-line text-2xl text-primary"></i>
                     </div>
@@ -127,7 +127,7 @@
                         <i class="ri-arrow-right-line ml-2"></i>
                     </a>
                 </div>
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-translate-2-line text-2xl text-primary"></i>
                     </div>
@@ -138,7 +138,7 @@
                         <i class="ri-arrow-right-line ml-2"></i>
                     </a>
                 </div>
-                <div class="glass-effect p-6 rounded-lg glow card-hover">
+                <div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
                     <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
                         <i class="ri-voice-recognition-line text-2xl text-primary"></i>
                     </div>
@@ -153,7 +153,7 @@
         </div>
     </section>
     <div class="ribbon fixed top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary"></div>
-    <footer class="py-4 px-4 sm:px-6 lg:px-8 glass-effect">
+    <footer class="py-4 px-4 sm:px-6 lg:px-8 glass-background">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -245,7 +245,7 @@
             });
 
             // Add floating animation to cards
-            const cards = document.querySelectorAll('.card-hover');
+            const cards = document.querySelectorAll('.card-hover-effect');
             cards.forEach((card, index) => {
                 gsap.to(card, {
                     y: -20,

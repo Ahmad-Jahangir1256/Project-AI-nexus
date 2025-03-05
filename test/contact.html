@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nexus - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Add this CSS to each HTML file within the <style> tag */
+
+/* Navigation Ribbon */
+nav {
+    background-color: rgba(5, 8, 51, 0.8);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav.sticky {
+    background-color: rgba(5, 8, 51, 0.95);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00d4ff;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* General Animations */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+.scale-up {
+    transform: scale(0.9);
+    transition: transform 0.5s ease-in-out;
+}
+
+.scale-up:hover {
+    transform: scale(1);
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050833;
+            color: #fff;
+        }
+        .space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed w-full p-4 flex justify-between items-center space-grotesk z-10">
+        <div class="text-primary text-2xl font-bold">AI Nexus</div>
+        <div class="space-x-4">
+            <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="index.html#tools" class="text-white hover:text-primary">AI Tools</a>
+            <a href="blog.html" class="text-white hover:text-primary">Blog</a>
+            <a href="community.html" class="text-white hover:text-primary">Community</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+        </div>
+    </nav>
+    <section class="min-h-screen py-16 flex items-center justify-center">
+        <div class="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-3xl font-bold text-center mb-6 space-grotesk">Get in Touch</h2>
+            <form action="#" method="POST">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-300">Name</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 bg-gray-800 rounded-lg">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 bg-gray-800 rounded-lg">
+                </div>
+                <div class="mb-4">
+                    <label for="subject" class="block text-gray-300">Subject</label>
+                    <input type="text" id="subject" name="subject" required class="w-full p-2 bg-gray-800 rounded-lg">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-300">Message</label>
+                    <textarea id="message" name="message" rows="4" required class="w-full p-2 bg-gray-800 rounded-lg"></textarea>
+                </div>
+                <button type="submit" class="bg-primary text-secondary py-2 px-4 rounded-button w-full hover:bg-white hover:text-primary transition">Send Message</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

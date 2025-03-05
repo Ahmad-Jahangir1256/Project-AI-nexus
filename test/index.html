@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nexus - Explore AI Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00d4ff',
+                        secondary: '#050833'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050833;
+            color: #fff;
+        }
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            opacity: 0.3;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, rgba(5, 8, 51, 0.2) 100%);
+            animation: animatedBackground 20s linear infinite;
+        }
+        @keyframes animatedBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .floating-animation {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        nav {
+            background-color: rgba(5, 8, 51, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav.sticky {
+            background-color: rgba(5, 8, 51, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00d4ff;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .scale-up {
+            transform: scale(0.9);
+            transition: transform 0.5s ease-in-out;
+        }
+        .scale-up:hover {
+            transform: scale(1);
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container"></div>
+    <nav class="fixed w-full p-4 flex justify-between items-center space-grotesk z-10">
+        <div class="text-primary text-2xl font-bold">AI Nexus</div>
+        <div class="space-x-4">
+            <a href="index.html#hero" class="text-white hover:text-primary">Home</a>
+            <a href="tools.html" class="text-white hover:text-primary">AI Tools</a>
+            <a href="blog.html" class="text-white hover:text-primary">Blog</a>
+            <a href="community.html" class="text-white hover:text-primary">Community</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+        </div>
+    </nav>
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center space-grotesk fade-in">
+        <div>
+            <h1 class="text-5xl font-bold mb-4">Discover the Power of AI</h1>
+            <p class="text-xl mb-8">Explore cutting-edge AI tools and stay updated with the latest AI news</p>
+            <a href="tools.html" class="bg-primary text-secondary py-2 px-4 rounded-button hover:bg-white hover:text-primary transition scale-up">Explore Tools</a>
+        </div>
+    </section>
+    <section id="tools" class="py-16">
+        <h2 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Featured AI Tools</h2>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card-hover-effect bg-secondary p-6 rounded-lg shadow-lg text-center floating-animation slide-up">
+                <img src="tool1.png" alt="AI Tool 1" class="mx-auto mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">AI Tool 1</h3>
+                <p class="text-gray-300">AI Tool 1 helps you automate tasks with ease.</p>
+            </div>
+            <div class="card-hover-effect bg-secondary p-6 rounded-lg shadow-lg text-center floating-animation slide-up">
+                <img src="tool2.png" alt="AI Tool 2" class="mx-auto mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">AI Tool 2</h3>
+                <p class="text-gray-300">AI Tool 2 provides insights and analytics for better decision-making.</p>
+            </div>
+            <div class="card-hover-effect bg-secondary p-6 rounded-lg shadow-lg text-center floating-animation slide-up">
+                <img src="tool3.png" alt="AI Tool 3" class="mx-auto mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">AI Tool 3</h3>
+                <p class="text-gray-300">AI Tool 3 enhances your productivity with smart features.</p>
+            </div>
+        </div>
+    </section>
+    <section id="blog" class="py-16">
+        <h2 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Latest Blog Posts</h2>
+        <div class="carousel container mx-auto">
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog1.png" alt="Blog Post 1" class="mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">Blog Post 1</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 1 discussing AI trends.</p>
+                <a href="blog.html" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog2.png" alt="Blog Post 2" class="mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">Blog Post 2</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 2 exploring AI innovations.</p>
+                <a href="blog.html" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog3.png" alt="Blog Post 3" class="mb-4 rounded-lg">
+                <h3 class="text-2xl font-semibold mb-4">Blog Post 3</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 3 on AI applications.</p>
+                <a href="blog.html" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('animation-container').appendChild(renderer.domElement);
+
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 5000;
+            const positions = new Float32Array(particlesCount * 3);
+            for (let i = 0; i < particlesCount; i++) {
+                positions[i * 3 + 0] = (Math.random() - 0.5) * 10;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({ color: 0x00d4ff, size: 0.05 });
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            camera.position.z = 3;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                particlesMesh.rotation.y += 0.001;
+                particlesMesh.rotation.x += 0.0005;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('sticky');
+                } else {
+                    nav.classList.remove('sticky');
+                }
+            });
+
+            // Add fade-in animation to sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fade-in, .slide-up').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

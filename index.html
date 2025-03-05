@@ -48,7 +48,7 @@ background-color: #050833;
 color: #fff;
 }
 #animation-container {
-position: absolute;
+position: fixed;
 top: 0;
 left: 0;
 width: 100%;
@@ -56,8 +56,15 @@ height: 100vh;
 z-index: 0;
 opacity: 0.3;
 pointer-events: none;
+background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, rgba(5, 8, 51, 0.2) 100%);
+animation: animatedBackground 20s linear infinite;
 }
-.floating {
+@keyframes animatedBackground {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.floating-animation {
 animation: floating 3s ease-in-out infinite;
 }
 @keyframes floating {
@@ -68,17 +75,17 @@ animation: floating 3s ease-in-out infinite;
 .space-grotesk {
 font-family: 'Space Grotesk', sans-serif;
 }
-.glass-effect {
+.glass-background {
 backdrop-filter: blur(10px);
 background: rgba(255, 255, 255, 0.1);
 }
-.glow {
+.glow-effect {
 box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
 }
-.card-hover {
+.card-hover-effect {
 transition: all 0.3s ease;
 }
-.card-hover:hover {
+.card-hover-effect:hover {
 transform: translateY(-5px);
 box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
 }
@@ -88,10 +95,18 @@ background: linear-gradient(45deg, #00d4ff, #00ffaa);
 background-clip: text;
 color: transparent;
 }
+.get-started-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.get-started-hover:hover {
+    transform: scale(1.1);
+    background-color: #00ffaa;
+    animation: none;
+}
 </style>
 </head>
 <body class="min-h-screen">
-<nav class="fixed w-full z-50 glass-effect">
+<nav class="fixed w-full z-50 glass-background">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between h-16">
 <div class="flex items-center">
@@ -111,10 +126,7 @@ color: transparent;
 </nav>
 <div id="animation-container"></div>
 <header class="relative h-screen flex items-center justify-center overflow-hidden">
-<div class="absolute inset-0">
-<img src="https://public.readdy.ai/ai/img_res/c3e4fcb6eb9b4c1c352e078ae69e685d.jpg" class="w-full h-full object-cover" alt="Hero Background">
 <div class="absolute inset-0 bg-secondary bg-opacity-70"></div>
-</div>
 <div class="relative text-center px-4 sm:px-6 lg:px-8">
 <h1 class="space-grotesk text-5xl md:text-7xl font-bold mb-8 gradient-text">
 Explore the Future of AI
@@ -122,7 +134,7 @@ Explore the Future of AI
 <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto">
 Discover and leverage cutting-edge AI tools to transform your workflow and unlock new possibilities
 </p>
-<a href="#tools" class="inline-flex items-center px-8 py-4 !rounded-button text-lg font-semibold text-white bg-primary hover:bg-opacity-90 transition-all duration-300 glow">
+<a href="#tools" class="inline-flex items-center px-8 py-4 !rounded-button text-lg font-semibold text-white bg-primary hover:bg-opacity-90 transition-all duration-300 glow-effect floating-animation get-started-hover">
 Get Started
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
@@ -134,7 +146,7 @@ Get Started
 Popular AI Tools
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-brain-line text-2xl text-primary"></i>
 </div>
@@ -145,7 +157,7 @@ Learn More
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
 </div>
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-image-edit-line text-2xl text-primary"></i>
 </div>
@@ -156,7 +168,7 @@ Learn More
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
 </div>
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-customer-service-2-line text-2xl text-primary"></i>
 </div>
@@ -167,7 +179,7 @@ Learn More
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
 </div>
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-code-line text-2xl text-primary"></i>
 </div>
@@ -178,7 +190,7 @@ Learn More
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
 </div>
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-translate-2-line text-2xl text-primary"></i>
 </div>
@@ -189,7 +201,7 @@ Learn More
 <i class="ri-arrow-right-line ml-2"></i>
 </a>
 </div>
-<div class="glass-effect p-6 rounded-lg glow card-hover">
+<div class="glass-background p-6 rounded-lg glow-effect card-hover-effect">
 <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mb-4">
 <i class="ri-voice-recognition-line text-2xl text-primary"></i>
 </div>
@@ -242,7 +254,7 @@ Why Choose AI Nexus
 Latest from Our Blog
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<article class="glass-effect rounded-lg overflow-hidden card-hover">
+<article class="glass-background rounded-lg overflow-hidden card-hover-effect">
 <img src="https://public.readdy.ai/ai/img_res/037fe6131de6a29b2c473be672f441d0.jpg" class="w-full h-48 object-cover" alt="Blog Image">
 <div class="p-6">
 <h3 class="text-xl font-semibold mb-3">The Future of AI in 2025</h3>
@@ -253,7 +265,7 @@ Latest from Our Blog
 </div>
 </div>
 </article>
-<article class="glass-effect rounded-lg overflow-hidden card-hover">
+<article class="glass-background rounded-lg overflow-hidden card-hover-effect">
 <img src="https://public.readdy.ai/ai/img_res/f7e9ab1d2e9e62aab61f156e3430af4e.jpg" class="w-full h-48 object-cover" alt="Blog Image">
 <div class="p-6">
 <h3 class="text-xl font-semibold mb-3">Machine Learning Breakthroughs</h3>
@@ -264,7 +276,7 @@ Latest from Our Blog
 </div>
 </div>
 </article>
-<article class="glass-effect rounded-lg overflow-hidden card-hover">
+<article class="glass-background rounded-lg overflow-hidden card-hover-effect">
 <img src="https://public.readdy.ai/ai/img_res/96f44cbc20ac43c06584fc498854ee01.jpg" class="w-full h-48 object-cover" alt="Blog Image">
 <div class="p-6">
 <h3 class="text-xl font-semibold mb-3">NLP Revolution</h3>
@@ -278,7 +290,7 @@ Latest from Our Blog
 </div>
 </div>
 </section>
-<footer class="py-12 px-4 sm:px-6 lg:px-8 glass-effect mt-24">
+<footer class="py-12 px-4 sm:px-6 lg:px-8 glass-background mt-24">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 <div>
@@ -362,8 +374,15 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
+// Mouse interaction
+document.addEventListener('mousemove', (event) => {
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    particlesMesh.rotation.x = mouseY * 0.1;
+    particlesMesh.rotation.y = mouseX * 0.1;
+});
 // Add floating animation to cards
-const cards = document.querySelectorAll('.card-hover');
+const cards = document.querySelectorAll('.card-hover-effect');
 cards.forEach((card, index) => {
     gsap.to(card, {
         y: -20,

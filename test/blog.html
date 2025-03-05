@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nexus - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050833;
+            color: #fff;
+        }
+        .space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel > * {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 100%;
+        }
+        nav {
+            background-color: rgba(5, 8, 51, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav.sticky {
+            background-color: rgba(5, 8, 51, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00d4ff;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .scale-up {
+            transform: scale(0.9);
+            transition: transform 0.5s ease-in-out;
+        }
+        .scale-up:hover {
+            transform: scale(1);
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed w-full p-4 flex justify-between items-center space-grotesk z-10">
+        <div class="text-primary text-2xl font-bold">AI Nexus</div>
+        <div class="space-x-4">
+            <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="tools.html" class="text-white hover:text-primary">AI Tools</a>
+            <a href="blog.html" class="text-white hover:text-primary">Blog</a>
+            <a href="community.html" class="text-white hover:text-primary">Community</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+        </div>
+    </nav>
+    <section class="min-h-screen py-16">
+        <h1 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Latest AI Blog Posts</h1>
+        <div class="carousel container mx-auto mb-8">
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog1.png" alt="Blog Post 1" class="mb-4 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4">Blog Post 1</h2>
+                <p class="text-gray-300">Excerpt of Blog Post 1 with insights into the latest AI trends.</p>
+                <a href="#" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog2.png" alt="Blog Post 2" class="mb-4 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4">Blog Post 2</h2>
+                <p class="text-gray-300">Excerpt of Blog Post 2 discussing AI innovations.</p>
+                <a href="#" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center flex flex-col items-center slide-up">
+                <img src="blog3.png" alt="Blog Post 3" class="mb-4 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4">Blog Post 3</h2>
+                <p class="text-gray-300">Excerpt of Blog Post 3 exploring AI applications.</p>
+                <a href="#" class="text-primary hover:underline mt-4">Read More</a>
+            </div>
+        </div>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-secondary p-6 rounded-lg shadow-lg slide-up">
+                <h3 class="text-xl font-semibold mb-4">Blog Post 4</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 4 with AI insights.</p>
+                <a href="#" class="text-primary hover:underline">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg slide-up">
+                <h3 class="text-xl font-semibold mb-4">Blog Post 5</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 5 discussing AI advancements.</p>
+                <a href="#" class="text-primary hover:underline">Read More</a>
+            </div>
+            <div class="bg-secondary p-6 rounded-lg shadow-lg slide-up">
+                <h3 class="text-xl font-semibold mb-4">Blog Post 6</h3>
+                <p class="text-gray-300">Excerpt of Blog Post 6 exploring AI technologies.</p>
+                <a href="#" class="text-primary hover:underline">Read More</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('sticky');
+                } else {
+                    nav.classList.remove('sticky');
+                }
+            });
+
+            // Add fade-in animation to sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fade-in, .slide-up').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
