@@ -93,14 +93,15 @@ nav a:hover::after {
         <div class="text-primary text-2xl font-bold">AI Nexus</div>
         <div class="space-x-4">
             <a href="index.html" class="text-white hover:text-primary">Home</a>
-            <a href="index.html#tools" class="text-white hover:text-primary">AI Tools</a>
+            <a href="about.html" class="text-white hover:text-primary">About</a>
+            <a href="tools.html" class="text-white hover:text-primary">AI Tools</a>
             <a href="blog.html" class="text-white hover:text-primary">Blog</a>
             <a href="community.html" class="text-white hover:text-primary">Community</a>
             <a href="contact.html" class="text-white hover:text-primary">Contact</a>
         </div>
     </nav>
     <section class="min-h-screen py-16 flex items-center justify-center">
-        <div class="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md fade-in">
             <h2 class="text-3xl font-bold text-center mb-6 space-grotesk">Get in Touch</h2>
             <form action="#" method="POST">
                 <div class="mb-4">
@@ -123,5 +124,35 @@ nav a:hover::after {
             </form>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sticky Navbar
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('sticky');
+                } else {
+                    nav.classList.remove('sticky');
+                }
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Apply fade-in and slide-up classes
+            const form = document.querySelector('form').parentElement;
+            form.classList.add('fade-in');
+            
+            // Observe the form container
+            observer.observe(form);
+        });
+    </script>
 </body>
 </html>

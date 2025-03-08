@@ -279,6 +279,7 @@
         <div class="text-primary text-2xl font-bold">AI Nexus</div>
         <div class="space-x-4">
             <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="about.html" class="text-white hover:text-primary">About</a>
             <a href="tools.html" class="text-white hover:text-primary">AI Tools</a>
             <a href="blog.html" class="text-white hover:text-primary">Blog</a>
             <a href="community.html" class="text-white hover:text-primary">Community</a>
@@ -534,13 +535,19 @@
                 });
                 
                 card.addEventListener('mouseleave', () => {
-                    // Find the parent scrolling row - animation will resume
-                    // when mouse leaves the entire row due to CSS .scrolling-row:hover
+                    // Find the parent scrolling row and check if mouse is still over the row
+                    const parentRow = card.closest('.scrolling-row');
+                    if (parentRow) {
+                        const isMouseOverRow = parentRow.matches(':hover');
+                        if (!isMouseOverRow) {
+                            parentRow.style.animationPlayState = 'running';
+                        }
+                    }
                 });
                 
                 return card;
             }
-            
+
             // Initialize scrolling rows for featured tools
             function initializeScrollingRows() {
                 const featuredToolsContainer = document.getElementById('featured-tools-container');
@@ -559,8 +566,26 @@
                     const card = createFeaturedToolCard(tool);
                     row1Elements.content1.appendChild(card);
                     
-                    // Create a clone for the second part
+                    // Create a clone for the second part - manually clone to preserve event listeners
                     const cardClone = card.cloneNode(true);
+                    // Re-add the event listeners to the clone
+                    cardClone.addEventListener('mouseenter', () => {
+                        const parentRow = cardClone.closest('.scrolling-row');
+                        if (parentRow) {
+                            parentRow.style.animationPlayState = 'paused';
+                        }
+                    });
+                    
+                    cardClone.addEventListener('mouseleave', () => {
+                        const parentRow = cardClone.closest('.scrolling-row');
+                        if (parentRow) {
+                            const isMouseOverRow = parentRow.matches(':hover');
+                            if (!isMouseOverRow) {
+                                parentRow.style.animationPlayState = 'running';
+                            }
+                        }
+                    });
+                    
                     row1Elements.content2.appendChild(cardClone);
                 });
                 
@@ -584,6 +609,24 @@
                     
                     // Create a clone for the second part
                     const cardClone = card.cloneNode(true);
+                    // Re-add the event listeners to the clone
+                    cardClone.addEventListener('mouseenter', () => {
+                        const parentRow = cardClone.closest('.scrolling-row');
+                        if (parentRow) {
+                            parentRow.style.animationPlayState = 'paused';
+                        }
+                    });
+                    
+                    cardClone.addEventListener('mouseleave', () => {
+                        const parentRow = cardClone.closest('.scrolling-row');
+                        if (parentRow) {
+                            const isMouseOverRow = parentRow.matches(':hover');
+                            if (!isMouseOverRow) {
+                                parentRow.style.animationPlayState = 'running';
+                            }
+                        }
+                    });
+                    
                     row2Elements.content2.appendChild(cardClone);
                 });
                 
