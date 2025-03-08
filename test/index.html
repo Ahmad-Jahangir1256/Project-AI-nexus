@@ -42,6 +42,7 @@
             background-color: #050833;
             color: #fff;
         }
+        /* Updated animation container: removed gradient background and keyframes */
         #animation-container {
             position: fixed;
             top: 0;
@@ -51,13 +52,7 @@
             z-index: 0;
             opacity: 0.3;
             pointer-events: none;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, rgba(5, 8, 51, 0.2) 100%);
-            animation: animatedBackground 20s linear infinite;
-        }
-        @keyframes animatedBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: transparent;
         }
         .floating-animation {
             animation: floating 3s ease-in-out infinite;
@@ -188,13 +183,14 @@
         </div>
     </section>
     <script>
+        // Particle background using Three.js
         document.addEventListener('DOMContentLoaded', () => {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.getElementById('animation-container').appendChild(renderer.domElement);
-
+            
             const particlesGeometry = new THREE.BufferGeometry();
             const particlesCount = 5000;
             const positions = new Float32Array(particlesCount * 3);
@@ -204,13 +200,23 @@
                 positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
             }
             particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-            const particlesMaterial = new THREE.PointsMaterial({ color: 0x00d4ff, size: 0.05 });
+            
+            // Load a circular texture to use for the particles to display them as circles.
+            const textureLoader = new THREE.TextureLoader();
+            const circleTexture = textureLoader.load('https://threejs.org/examples/textures/sprites/disc.png');
+            
+            const particlesMaterial = new THREE.PointsMaterial({ 
+                color: 0x00d4ff, 
+                size: 0.05, 
+                map: circleTexture, 
+                transparent: true, 
+                alphaTest: 0.5 
+            });
             const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
             scene.add(particlesMesh);
-
+            
             camera.position.z = 3;
-
+            
             function animate() {
                 requestAnimationFrame(animate);
                 particlesMesh.rotation.y += 0.001;
@@ -218,13 +224,13 @@
                 renderer.render(scene, camera);
             }
             animate();
-
+            
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-
+            
             const nav = document.querySelector('nav');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 100) {
@@ -233,8 +239,8 @@
                     nav.classList.remove('sticky');
                 }
             });
-
-            // Add fade-in animation to sections
+            
+            // Fade-in animation for sections
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -244,7 +250,7 @@
                     }
                 });
             });
-
+            
             document.querySelectorAll('.fade-in, .slide-up').forEach(section => {
                 observer.observe(section);
             });

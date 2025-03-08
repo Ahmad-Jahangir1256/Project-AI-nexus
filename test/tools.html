@@ -22,18 +22,36 @@
             display: flex;
             justify-content: center;
             margin-bottom: 4rem;
+            position: relative;
         }
         .search-bar input {
             width: 100%;
             max-width: 600px;
-            padding: 1rem;
+            padding: 1rem 1rem 1rem 3rem;
             border-radius: 8px;
-            border: none;
-            background-color: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(31, 41, 55, 0.8);
             color: #fff;
+            transition: all 0.3s ease;
+        }
+        .search-bar input:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+            outline: none;
+        }
+        .search-bar::before {
+            content: "\ea73"; /* Remix icon search glyph */
+            font-family: 'remixicon';
+            position: absolute;
+            left: calc(50% - 280px);
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.2rem;
         }
         .search-bar input::placeholder {
-            color: #aaa;
+            color: #9ca3af;
+            opacity: 0.8;
         }
         nav {
             background-color: rgba(5, 8, 51, 0.8);
@@ -73,7 +91,7 @@
             opacity: 1;
         }
         .scale-up {
-            transform: scale(0.9);
+            transform: scale(0.95);
             transition: transform 0.5s ease-in-out;
         }
         .scale-up:hover {
@@ -88,6 +106,172 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Card styling similar to blog.html */
+        .tool-card {
+            background-color: #1f2937; /* Tailwind gray-800 equivalent */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .tool-card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 10; /* Ensure the hovered card is on top */
+        }
+        
+        /* Tools container with edge blur effects */
+        .tools-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        /* Left edge blur effect */
+        .tools-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(5, 8, 51, 0.9), rgba(5, 8, 51, 0));
+            z-index: 5;
+            pointer-events: none; /* Allow clicking through the overlay */
+        }
+        
+        /* Right edge blur effect */
+        .tools-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(5, 8, 51, 0.9), rgba(5, 8, 51, 0));
+            z-index: 5;
+            pointer-events: none; /* Allow clicking through the overlay */
+        }
+        
+        /* Tool card category badge */
+        .tool-category {
+            display: inline-block;
+            background-color: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        /* Category filters */
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-filter {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-filter:hover, .category-filter.active {
+            background-color: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+
+        /* Add these styles for the infinite scrolling feature */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scrolling-tools-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        /* Left edge blur effect */
+        .scrolling-tools-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(5, 8, 51, 0.9), rgba(5, 8, 51, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Right edge blur effect */
+        .scrolling-tools-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(5, 8, 51, 0.9), rgba(5, 8, 51, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .scrolling-row {
+            display: flex;
+            padding: 1rem 0;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .scrolling-row:hover {
+            animation-play-state: paused;
+        }
+
+        .scrolling-row-content {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .featured-tool-card {
+            min-width: 280px;
+            flex-shrink: 0;
+            margin-right: 1rem;
+        }
+
+        /* Enhance card hover effect in scrolling rows */
+        .scrolling-row .tool-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s linear 0s;
+        }
+        
+        .scrolling-row .tool-card:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            z-index: 20; /* Ensure the hovered card is on top */
+        }
+        
+        /* Ensure scrolling pauses on hover */
+        .scrolling-row:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body>
@@ -101,34 +285,40 @@
             <a href="contact.html" class="text-white hover:text-primary">Contact</a>
         </div>
     </nav>
-    <section class="min-h-screen py-16">
-        <h1 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Search for AI Tools</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Search by keyword..." class="p-3 bg-gray-800 rounded-lg">
+    <section class="min-h-screen pt-20 pb-16">
+        <h1 class="text-4xl font-bold text-center mb-8 space-grotesk fade-in">Discover AI Tools</h1>
+
+        <!-- Add this section for featured tools with infinite scroll -->
+        <div class="container mx-auto mb-12">
+            <h2 class="text-2xl font-bold mb-6 space-grotesk fade-in">Featured Tools</h2>
+            <div class="scrolling-tools-container" id="featured-tools-container">
+                <!-- Scrolling rows will be added here -->
+            </div>
         </div>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center scale-up slide-up">
-                <img src="tool1.png" alt="AI Tool 1" class="mx-auto mb-4 rounded-lg">
-                <h2 class="text-2xl font-semibold mb-4">AI Tool 1</h2>
-                <p class="text-gray-300">AI Tool 1 helps you automate tasks with ease.</p>
-                <a href="#" class="text-primary hover:underline">Learn More</a>
-            </div>
-            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center scale-up slide-up">
-                <img src="tool2.png" alt="AI Tool 2" class="mx-auto mb-4 rounded-lg">
-                <h2 class="text-2xl font-semibold mb-4">AI Tool 2</h2>
-                <p class="text-gray-300">AI Tool 2 provides insights and analytics for better decision-making.</p>
-                <a href="#" class="text-primary hover:underline">Learn More</a>
-            </div>
-            <div class="bg-secondary p-6 rounded-lg shadow-lg text-center scale-up slide-up">
-                <img src="tool3.png" alt="AI Tool 3" class="mx-auto mb-4 rounded-lg">
-                <h2 class="text-2xl font-semibold mb-4">AI Tool 3</h2>
-                <p class="text-gray-300">AI Tool 3 enhances your productivity with smart features.</p>
-                <a href="#" class="text-primary hover:underline">Learn More</a>
+        
+        <div class="search-bar fade-in">
+            <input type="text" placeholder="Search AI tools by name, category, or functionality..." class="p-3 bg-gray-800 rounded-lg">
+        </div>
+        
+        <div class="category-filters fade-in">
+            <div class="category-filter active">All</div>
+            <div class="category-filter">Text Generation</div>
+            <div class="category-filter">Image Creation</div>
+            <div class="category-filter">Video Editing</div>
+            <div class="category-filter">Coding Assistant</div>
+            <div class="category-filter">Data Analysis</div>
+        </div>
+        
+        <div class="container mx-auto tools-container">
+            <h2 class="text-2xl font-bold mb-6 space-grotesk fade-in">All Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="tools-grid">
+                <!-- Tool cards will be dynamically loaded here -->
             </div>
         </div>
     </section>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Sticky Navbar
             const nav = document.querySelector('nav');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 100) {
@@ -138,18 +328,272 @@
                 }
             });
 
-            // Add fade-in animation to sections
+            // Intersection Observer for scroll animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            });
+            }, { threshold: 0.1 });
 
             document.querySelectorAll('.fade-in, .slide-up').forEach(section => {
                 observer.observe(section);
             });
+            
+            // Mock tool data
+            const toolsData = [
+                {
+                    id: 1,
+                    name: "AI Text Generator Pro",
+                    description: "Generate high-quality text content for blogs, marketing, and more with advanced AI.",
+                    category: "Text Generation",
+                    image: "path/to/image1.jpg"
+                },
+                {
+                    id: 2,
+                    name: "ImageAI Creator",
+                    description: "Create stunning AI-generated images from simple text prompts.",
+                    category: "Image Creation",
+                    image: "path/to/image2.jpg"
+                },
+                {
+                    id: 3,
+                    name: "CodeAssist AI",
+                    description: "Boost your coding productivity with AI suggestions and bug detection.",
+                    category: "Coding Assistant",
+                    image: "path/to/image3.jpg"
+                },
+                {
+                    id: 4,
+                    name: "VideoSmart Editor",
+                    description: "Edit videos with AI-powered tools that save you time and effort.",
+                    category: "Video Editing",
+                    image: "path/to/image4.jpg"
+                },
+                {
+                    id: 5,
+                    name: "DataMind Analyzer",
+                    description: "Analyze complex datasets and generate insights automatically with AI.",
+                    category: "Data Analysis",
+                    image: "path/to/image5.jpg"
+                },
+                {
+                    id: 6,
+                    name: "NeuralText Writer",
+                    description: "Create persuasive marketing copy with AI that understands your brand voice.",
+                    category: "Text Generation",
+                    image: "path/to/image6.jpg"
+                },
+                {
+                    id: 7,
+                    name: "PixelGenius",
+                    description: "Transform and enhance images using advanced AI algorithms.",
+                    category: "Image Creation",
+                    image: "path/to/image7.jpg"
+                },
+                {
+                    id: 8,
+                    name: "CodeCraft Assistant",
+                    description: "Get intelligent code suggestions across multiple programming languages.",
+                    category: "Coding Assistant",
+                    image: "path/to/image8.jpg"
+                }
+            ];
+            
+            // Function to create a tool card
+            function createToolCard(tool) {
+                const card = document.createElement('div');
+                card.className = 'tool-card slide-up';
+                card.innerHTML = `
+                    <span class="tool-category">${tool.category}</span>
+                    <img src="${tool.image}" alt="${tool.name}" class="w-full h-48 object-cover mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">${tool.name}</h3>
+                    <p class="text-gray-300 mb-4">${tool.description}</p>
+                    <a href="#" class="text-primary hover:underline flex items-center">
+                        Learn More 
+                        <i class="ri-arrow-right-line ml-1"></i>
+                    </a>
+                `;
+                return card;
+            }
+            
+            // Load tools into the grid
+            const toolsGrid = document.getElementById('tools-grid');
+            toolsData.forEach(tool => {
+                const card = createToolCard(tool);
+                toolsGrid.appendChild(card);
+                observer.observe(card);
+            });
+            
+            // Category filter functionality
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // Remove active class from all filters
+                    categoryFilters.forEach(f => f.classList.remove('active'));
+                    // Add active class to clicked filter
+                    filter.classList.add('active');
+                    
+                    const category = filter.textContent;
+                    
+                    // Clear the grid
+                    toolsGrid.innerHTML = '';
+                    
+                    // Filter and add tools
+                    if (category === 'All') {
+                        toolsData.forEach(tool => {
+                            const card = createToolCard(tool);
+                            toolsGrid.appendChild(card);
+                            observer.observe(card);
+                        });
+                    } else {
+                        const filteredTools = toolsData.filter(tool => tool.category === category);
+                        filteredTools.forEach(tool => {
+                            const card = createToolCard(tool);
+                            toolsGrid.appendChild(card);
+                            observer.observe(card);
+                        });
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                // Reset category filters when searching
+                categoryFilters.forEach(f => f.classList.remove('active'));
+                document.querySelector('.category-filter:first-child').classList.add('active');
+                
+                // Clear the grid
+                toolsGrid.innerHTML = '';
+                
+                // Filter tools based on search term
+                const filteredTools = toolsData.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) || 
+                    tool.description.toLowerCase().includes(searchTerm) ||
+                    tool.category.toLowerCase().includes(searchTerm)
+                );
+                
+                // Add filtered tools
+                filteredTools.forEach(tool => {
+                    const card = createToolCard(tool);
+                    toolsGrid.appendChild(card);
+                    observer.observe(card);
+                });
+            });
+
+            // Function to create a row of scrolling cards with duplicated content for seamless looping
+            function createScrollingRow() {
+                const row = document.createElement('div');
+                row.className = 'scrolling-row';
+                
+                // First set of cards (original)
+                const content1 = document.createElement('div');
+                content1.className = 'scrolling-row-content';
+                
+                // Second set of cards (duplicate for seamless looping)
+                const content2 = document.createElement('div');
+                content2.className = 'scrolling-row-content';
+                
+                row.appendChild(content1);
+                row.appendChild(content2);
+                
+                return {
+                    row: row,
+                    content1: content1,
+                    content2: content2
+                };
+            }
+            
+            // Function to create a featured tool card for scrolling
+            function createFeaturedToolCard(tool) {
+                const card = document.createElement('div');
+                card.className = 'tool-card featured-tool-card';
+                card.innerHTML = `
+                    <span class="tool-category">${tool.category}</span>
+                    <img src="${tool.image}" alt="${tool.name}" class="w-full h-48 object-cover mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">${tool.name}</h3>
+                    <p class="text-gray-300 mb-4">${tool.description}</p>
+                    <a href="#" class="text-primary hover:underline flex items-center">
+                    Learn More 
+                    <i class="ri-arrow-right-line ml-1"></i>
+                    </a>
+                `;
+                
+                // Add hover event listeners for each card
+                card.addEventListener('mouseenter', () => {
+                    // Find the parent scrolling row and pause its animation
+                    const parentRow = card.closest('.scrolling-row');
+                    if (parentRow) {
+                        parentRow.style.animationPlayState = 'paused';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    // Find the parent scrolling row - animation will resume
+                    // when mouse leaves the entire row due to CSS .scrolling-row:hover
+                });
+                
+                return card;
+            }
+            
+            // Initialize scrolling rows for featured tools
+            function initializeScrollingRows() {
+                const featuredToolsContainer = document.getElementById('featured-tools-container');
+                
+                // Create the first scrolling row (for Text Generation and Image Creation)
+                const row1Elements = createScrollingRow();
+                featuredToolsContainer.appendChild(row1Elements.row);
+                
+                // Filter tools for the first row
+                const firstRowTools = toolsData.filter(tool => 
+                    tool.category === 'Text Generation' || tool.category === 'Image Creation'
+                );
+                
+                // Add tools to first row
+                firstRowTools.forEach(tool => {
+                    const card = createFeaturedToolCard(tool);
+                    row1Elements.content1.appendChild(card);
+                    
+                    // Create a clone for the second part
+                    const cardClone = card.cloneNode(true);
+                    row1Elements.content2.appendChild(cardClone);
+                });
+                
+                // Create the second scrolling row (for Coding Assistant, Video Editing, and Data Analysis)
+                const row2Elements = createScrollingRow();
+                // Make this row scroll in the opposite direction
+                row2Elements.row.style.animation = 'scroll 30s linear infinite reverse';
+                featuredToolsContainer.appendChild(row2Elements.row);
+                
+                // Filter tools for the second row
+                const secondRowTools = toolsData.filter(tool => 
+                    tool.category === 'Coding Assistant' || 
+                    tool.category === 'Video Editing' || 
+                    tool.category === 'Data Analysis'
+                );
+                
+                // Add tools to second row
+                secondRowTools.forEach(tool => {
+                    const card = createFeaturedToolCard(tool);
+                    row2Elements.content1.appendChild(card);
+                    
+                    // Create a clone for the second part
+                    const cardClone = card.cloneNode(true);
+                    row2Elements.content2.appendChild(cardClone);
+                });
+                
+                // Force reflow to ensure animations work properly
+                void row1Elements.row.offsetWidth;
+                void row2Elements.row.offsetWidth;
+            }
+            
+            // Initialize the featured tools section
+            initializeScrollingRows();
         });
     </script>
 </body>
