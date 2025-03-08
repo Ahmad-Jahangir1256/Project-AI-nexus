@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Nexus - Contact</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#00d4ff',
+              secondary: '#111827'
+            }
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -100,30 +112,145 @@ nav a:hover::after {
             <a href="contact.html" class="text-white hover:text-primary">Contact</a>
         </div>
     </nav>
-    <section class="min-h-screen py-16 flex items-center justify-center">
-        <div class="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md fade-in">
-            <h2 class="text-3xl font-bold text-center mb-6 space-grotesk">Get in Touch</h2>
-            <form action="#" method="POST">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-300">Name</label>
-                    <input type="text" id="name" name="name" required class="w-full p-2 bg-gray-800 rounded-lg">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-300">Email</label>
-                    <input type="email" id="email" name="email" required class="w-full p-2 bg-gray-800 rounded-lg">
-                </div>
-                <div class="mb-4">
-                    <label for="subject" class="block text-gray-300">Subject</label>
-                    <input type="text" id="subject" name="subject" required class="w-full p-2 bg-gray-800 rounded-lg">
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-300">Message</label>
-                    <textarea id="message" name="message" rows="4" required class="w-full p-2 bg-gray-800 rounded-lg"></textarea>
-                </div>
-                <button type="submit" class="bg-primary text-secondary py-2 px-4 rounded-button w-full hover:bg-white hover:text-primary transition">Send Message</button>
-            </form>
+    <section class="min-h-screen py-16 flex flex-col items-center justify-center relative">
+    <!-- Background decoration elements -->
+    <div class="absolute top-32 left-20 w-64 h-64 bg-blue-500 rounded-full filter blur-[120px] opacity-20 z-0"></div>
+    <div class="absolute bottom-32 right-20 w-72 h-72 bg-purple-500 rounded-full filter blur-[120px] opacity-20 z-0"></div>
+    
+    <!-- Contact heading with gradient -->
+    <h1 class="text-5xl mb-12 font-bold space-grotesk text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary">Contact Us</h1>
+    
+    <!-- Contact card -->
+    <div class="bg-secondary/80 backdrop-blur-sm p-8 rounded-lg shadow-lg w-full max-w-md fade-in z-10 border border-gray-800">
+        <h2 class="text-3xl font-bold text-center mb-6 space-grotesk">Get in Touch</h2>
+        <form action="#" method="POST">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-300 mb-1">Name</label>
+                <input type="text" id="name" name="name" required 
+                       class="w-full p-3 bg-gray-800/70 rounded-lg border border-gray-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-300 mb-1">Email</label>
+                <input type="email" id="email" name="email" required 
+                       class="w-full p-3 bg-gray-800/70 rounded-lg border border-gray-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">
+            </div>
+            <div class="mb-4">
+                <label for="subject" class="block text-gray-300 mb-1">Subject</label>
+                <input type="text" id="subject" name="subject" required 
+                       class="w-full p-3 bg-gray-800/70 rounded-lg border border-gray-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">
+            </div>
+            <div class="mb-6">
+                <label for="message" class="block text-gray-300 mb-1">Message</label>
+                <textarea id="message" name="message" rows="4" required 
+                          class="w-full p-3 bg-gray-800/70 rounded-lg border border-gray-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"></textarea>
+            </div>
+            <button type="submit" 
+                    class="bg-primary text-secondary py-3 px-6 rounded-lg w-full hover:bg-white hover:text-primary transition-colors font-medium flex items-center justify-center gap-2">
+                <span>Send Message</span>
+                <i class="ri-send-plane-fill"></i>
+            </button>
+        </form>
+    </div>
+    
+    <!-- Alternative contact methods -->
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl z-10 slide-up">
+        <div class="bg-gray-800/50 backdrop-blur-sm p-5 rounded-lg flex flex-col items-center text-center hover:bg-gray-800 transition-colors border border-gray-700 hover:border-primary">
+            <i class="ri-mail-line text-3xl text-primary mb-3"></i>
+            <h3 class="text-lg font-bold mb-1">Email Us</h3>
+            <p class="text-gray-400">contact@ainexus.com</p>
         </div>
-    </section>
+        <div class="bg-gray-800/50 backdrop-blur-sm p-5 rounded-lg flex flex-col items-center text-center hover:bg-gray-800 transition-colors border border-gray-700 hover:border-primary">
+            <i class="ri-map-pin-line text-3xl text-primary mb-3"></i>
+            <h3 class="text-lg font-bold mb-1">Location</h3>
+            <p class="text-gray-400">Tech Hub, Innovation Street</p>
+        </div>
+        <div class="bg-gray-800/50 backdrop-blur-sm p-5 rounded-lg flex flex-col items-center text-center hover:bg-gray-800 transition-colors border border-gray-700 hover:border-primary">
+            <i class="ri-customer-service-2-line text-3xl text-primary mb-3"></i>
+            <h3 class="text-lg font-bold mb-1">Support</h3>
+            <p class="text-gray-400">24/7 AI-powered assistance</p>
+        </div>
+    </div>
+</section>
+    <!-- Footer section to be added to all pages - place before closing body tag -->
+<footer class="bg-gray-900 py-12 mt-12 border-t border-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- About Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 space-grotesk text-white">AI Nexus</h3>
+                <p class="text-gray-400 mb-4">
+                    Your gateway to the world of artificial intelligence. 
+                    Discover cutting-edge AI tools, stay updated with the latest developments, 
+                    and connect with the AI community.
+                </p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-twitter-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-linkedin-box-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-facebook-box-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-instagram-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-github-fill text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 space-grotesk text-white">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">AI Tools</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
+                    <li><a href="community.html" class="text-gray-400 hover:text-primary transition-colors">Community</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Categories Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 space-grotesk text-white">Tool Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">Text Generation</a></li>
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">Image Creation</a></li>
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">Video Editing</a></li>
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">Coding Assistant</a></li>
+                    <li><a href="tools.html" class="text-gray-400 hover:text-primary transition-colors">Data Analysis</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 space-grotesk text-white">Stay Updated</h3>
+                <p class="text-gray-400 mb-4">Subscribe to our newsletter to get the latest AI news and tool updates.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Your email address" class="bg-gray-800 text-white p-2 rounded-l w-full focus:outline-none focus:ring-1 focus:ring-primary">
+                    <button type="submit" class="bg-primary text-secondary px-4 py-2 rounded-r hover:bg-white hover:text-primary transition">
+                        <i class="ri-send-plane-fill"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Row -->
+        <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 mb-4 md:mb-0">© 2025 AI Nexus. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors">Terms of Service</a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Sticky Navbar
@@ -149,6 +276,12 @@ nav a:hover::after {
             // Apply fade-in and slide-up classes
             const form = document.querySelector('form').parentElement;
             form.classList.add('fade-in');
+            
+            // Add slide-up animation to contact methods
+            const contactMethods = document.querySelector('.slide-up');
+            if (contactMethods) {
+                observer.observe(contactMethods);
+            }
             
             // Observe the form container
             observer.observe(form);
